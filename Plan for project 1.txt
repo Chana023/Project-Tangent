@@ -1,0 +1,11 @@
+1.Read csv data
+2.Function to output unique user stories
+3.Function to check all complete tasks
+4.Function Unique completed tasks
+5.Function for unique incomplete tasks
+6.Function for maximum Task id completed
+7. Function to print the relevant data out to a csv??? (This may be messy) 
+
+Notes:
+Yes and no for duplicates indicates a no (and gate logic)
+
