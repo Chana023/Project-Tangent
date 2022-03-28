@@ -1,4 +1,5 @@
 import csv
+from posixpath import split
 
 
 #Read csv files
@@ -20,10 +21,32 @@ def readFile(filename):
 
     return rawData
 
+def get_unique_user_story(dataList):
+    """Takes in a 2 dimensional list and returns the unique values in column 1
+    
+    Parameters: 
+    Two dimensional list
+
+    Returns:
+    list: list of unique values in the first column of a two-dimensional list 
+    
+    """
+
+    uniqueValues = []
+
+    for text in range(1, len(dataList),1):
+        itemData = dataList[text][0]
+        if itemData not in uniqueValues:
+            uniqueValues.append(itemData)
+        
+    return uniqueValues
+        
+
 #Main code to invoke functions
 dataset1 = 'dummy.csv'
 dataset2 = 'source_data.csv'
 
 datalist = readFile(dataset1)
-for x in datalist:
-    print(x)
+
+print(get_unique_user_story(datalist))
+
