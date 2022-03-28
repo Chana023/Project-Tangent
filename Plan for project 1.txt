@@ -9,3 +9,10 @@
 Notes:
 Yes and no for duplicates indicates a no (and gate logic)
 
+(Possible improvements -Going for a basic implementation for now)
+--Going to try implementing an item class where the items are unique but each task is related to that item with a boolean yes or no
+
+-- Need to dynamically create an instance of the class for each item when reading the file
+-- Possible store each task in a 2 dimenisional list with it's yes or no
+-- This then would mean sorting the tasks would be easier.
+
