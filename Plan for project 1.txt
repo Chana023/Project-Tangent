@@ -6,6 +6,10 @@
 6.Function for maximum Task id completed
 7. Function to print the relevant data out to a csv??? (This may be messy) 
 
+Might a small change to make implementing point 5 and 6 easier duplicates are now removed so that 
+calculating the tasks complete and incomplete will not need to consider the yes and no case or any other duplicates in the 
+source file.
+
 Notes:
 Yes and no for duplicates indicates a no (and gate logic)
 
