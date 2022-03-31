@@ -1,0 +1,16 @@
+User,Story All Complete,Num Unique Completed Tasks,Num Unique Incomplete Tasks,Max Completed Task ID
+item_1,No,3,5,13
+item_2,No,2,1,15
+item_3,No,3,1,8
+item_4,No,1,2,11
+item_5,No,4,2,15
+item_6,No,4,1,13
+item_7,No,2,4,15
+item_8,No,3,1,9
+item_9,No,2,5,13
+item_10,No,2,2,13
+item_11,No,3,5,14
+item_12,No,2,2,11
+item_13,No,4,5,15
+item_14,No,2,4,9
+item_15,No,1,7,15
