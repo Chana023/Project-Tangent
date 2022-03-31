@@ -1,5 +1,6 @@
 from audioop import reverse
 import csv
+from distutils.command.clean import clean
 from posixpath import split
 
 
@@ -35,7 +36,7 @@ def get_unique_user_story(dataList):
 
     uniqueValues = []
 
-    for text in range(1, len(dataList),1):
+    for text in range(0, len(dataList),1):
         itemData = dataList[text][0]
         if itemData not in uniqueValues:
             uniqueValues.append(itemData)
@@ -56,7 +57,6 @@ def itemCompletionStatus(dataList):
     """
     uniqueItems = get_unique_user_story(dataList)
     #Ignore heading list
-    dataList.pop(0)
     ResponseList = []
     tempList = []
 
@@ -72,7 +72,6 @@ def itemCompletionStatus(dataList):
                 else:
                     tempList.append('BadData')
         #Check if all values in templist are 'True' then append Yes to ResponseList else return 'No'
-        print(x + ' ' + str(tempList))
         if all(tempList) == True:
             ResponseList.append('Yes')
         else:
@@ -82,19 +81,52 @@ def itemCompletionStatus(dataList):
         
     return ResponseList 
 
-    
-        
 
+def removeDuplicatesWithYes(dataList):
+    """Takes in a 2 dimensional list and removes duplicates values
+    
+    Parameters: 
+    Two dimensional list
+
+    Returns:
+    list: Removes duplicates and if the item has a yes and no only the no index is returned to indicate 
+    the item is incomplete.
+    
+    """
+
+    dataList.pop(0)
+    
+    #Remove duplicates besides yes and no extras
+    tempList = []
+    for x in dataList:
+        if x not in tempList:
+            tempList.append(x)
+    
+    dataList = tempList
+    tempList = []
+    indexToBeDeleted = []
+
+    #Remove yes response where there exists a no already
+    for y in dataList:
+        for z in dataList:
+            if y[0] == z[0] and y[1] == z[1] and y[2] != z[2]:
+                if z[2] == 'Yes':
+                    indexToBeDeleted.append(z)
+
+    for index in indexToBeDeleted:
+        dataList.remove(index)
+
+    return dataList
+    
 #Main code to invoke functions
 dataset1 = 'dummy.csv'
 dataset2 = 'source_data.csv'
 dataset3 = 'sample-creation-3.csv'
 
-datalist = readFile(dataset3)
+datalist = readFile(dataset1)
+cleanList = removeDuplicatesWithYes(datalist)
 
-uniqueItems = get_unique_user_story(datalist)
-
-#print(str(get_unique_user_story(datalist)))
-print(str(itemCompletionStatus(datalist)))
+print(str(get_unique_user_story(cleanList)))
+print(str(itemCompletionStatus(cleanList)))
 
 
