@@ -72,7 +72,6 @@ def itemCompletionStatus(dataList):
                 else:
                     tempList.append('BadData')
         #Check if all values in templist are 'True' then append Yes to ResponseList else return 'No'
-        print(x + ' ' + str(tempList))
         if all(tempList) == True:
             ResponseList.append('Yes')
         else:
@@ -87,14 +86,14 @@ def itemCompletionStatus(dataList):
 
 #Main code to invoke functions
 dataset1 = 'dummy.csv'
-dataset2 = 'source_data.csv'
+dataset2 = 'source_data.csv'        #Main test data
 dataset3 = 'sample-creation-3.csv'
 
-datalist = readFile(dataset3)
+datalist = readFile(dataset2)
 
 uniqueItems = get_unique_user_story(datalist)
 
-#print(str(get_unique_user_story(datalist)))
+print(str(get_unique_user_story(datalist)))
 print(str(itemCompletionStatus(datalist)))
 
 
