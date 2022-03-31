@@ -143,7 +143,22 @@ def taskChecker(dataList, bool):
         return completeList
     elif bool == False:
         return inCompleteList
-    
+
+def maxTaskIDCompleted(dataList):
+    uniqueItems = get_unique_user_story(dataList)
+    listOfLargestTaskCompleted = []
+    largestTask = 0
+
+    for item in uniqueItems:
+        for task in dataList:
+            if item == task[0]:
+                if int(largestTask) < int(task[1]) and task[2] == 'Yes':
+                    largestTask = task[1]
+
+        listOfLargestTaskCompleted.append(largestTask)
+        largestTask = 0
+
+    return listOfLargestTaskCompleted
     
 #Main code to invoke functions
 dataset1 = 'dummy.csv'
@@ -153,7 +168,10 @@ dataset3 = 'sample-creation-3.csv'
 datalist = readFile(dataset2)
 cleanList = removeDuplicatesWithYes(datalist)
 
+
+
 print(str(get_unique_user_story(cleanList)))
 print(str(itemCompletionStatus(cleanList)))
 print(taskChecker(cleanList, True))
 print(taskChecker(cleanList, False))
+print(maxTaskIDCompleted(cleanList))
