@@ -1,4 +1,5 @@
 from audioop import reverse
+from binascii import Incomplete
 import csv
 from distutils.command.clean import clean
 from posixpath import split
@@ -117,17 +118,42 @@ def removeDuplicatesWithYes(dataList):
         dataList.remove(index)
 
     return dataList
+
+def taskChecker(dataList, bool):
+    uniqueItems = get_unique_user_story(dataList)
+    completeCounter = 0
+    incompleteCounter = 0
+    completeList = []
+    inCompleteList = []
+
+    for item in uniqueItems:
+        for x in dataList:
+            if item == x[0] and x[2] == 'Yes':
+                completeCounter += 1
+            elif item == x[0] and x[2] == 'No':
+                incompleteCounter += 1
+                pass
+        
+        completeList.append(completeCounter)
+        inCompleteList.append(incompleteCounter)
+        completeCounter = 0
+        incompleteCounter = 0
+
+    if bool == True:
+        return completeList
+    elif bool == False:
+        return inCompleteList
+    
     
 #Main code to invoke functions
 dataset1 = 'dummy.csv'
 dataset2 = 'source_data.csv'        #Main test data
 dataset3 = 'sample-creation-3.csv'
 
-datalist = readFile(dataset1)
+datalist = readFile(dataset2)
 cleanList = removeDuplicatesWithYes(datalist)
 
 print(str(get_unique_user_story(cleanList)))
 print(str(itemCompletionStatus(cleanList)))
-
-
-
+print(taskChecker(cleanList, True))
+print(taskChecker(cleanList, False))
