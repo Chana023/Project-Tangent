@@ -1,8 +1,4 @@
-from audioop import reverse
-from binascii import Incomplete
 import csv
-from distutils.command.clean import clean
-from posixpath import split
 
 
 #Read csv files
@@ -168,10 +164,27 @@ dataset3 = 'sample-creation-3.csv'
 datalist = readFile(dataset2)
 cleanList = removeDuplicatesWithYes(datalist)
 
+uniqueUserStories = get_unique_user_story(cleanList)
+completeItems = itemCompletionStatus(cleanList)
+countCompletedTasks = taskChecker(cleanList, True)
+countIncompleteTasks = taskChecker(cleanList, False)
+maxTaskIdCompleted = maxTaskIDCompleted(cleanList)
 
+header = ['User', 'Story All Complete', 'Num Unique Completed Tasks', 'Num Unique Incomplete Tasks', 'Max Completed Task ID']
 
-print(str(get_unique_user_story(cleanList)))
-print(str(itemCompletionStatus(cleanList)))
-print(taskChecker(cleanList, True))
-print(taskChecker(cleanList, False))
-print(maxTaskIDCompleted(cleanList))
+with open('output.csv', 'w') as file:
+    writer = csv.writer(file, lineterminator = '\n')
+    writer.writerow(header)
+    row = []
+
+    for item in range(0,len(uniqueUserStories),1):
+        row.append(uniqueUserStories[item])
+        row.append(completeItems[item])
+        row.append(countCompletedTasks[item])
+        row.append(countIncompleteTasks[item])
+        row.append(maxTaskIdCompleted[item])
+        writer.writerow(row)
+        row.clear()
+
+    
+    

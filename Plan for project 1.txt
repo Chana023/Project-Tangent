@@ -20,3 +20,6 @@ Yes and no for duplicates indicates a no (and gate logic)
 -- Possible store each task in a 2 dimenisional list with it's yes or no
 -- This then would mean sorting the tasks would be easier.
 
+Base functionality completed but the code looks abit too long , need to possibly implement testing
+then edit the functions to be more readible and editable , lots of wastage in terms of copying lists, can't find 
+how to pass references to lists but there must be a way rather than passing the entire list to each function.
